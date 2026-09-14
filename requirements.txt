@@ -1,0 +1,4 @@
+faker
+webdriver-manager
+selenium
+pytest
