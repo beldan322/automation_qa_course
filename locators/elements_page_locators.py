@@ -20,3 +20,10 @@ class TextBoxPageLocators:
     CREATED_EMAIL = (By.CSS_SELECTOR, "#output #email")
     CREATED_CURRENT_ADDRESS = (By.CSS_SELECTOR, "#output #currentAddress")
     CREATED_PERMANET_ADDRESS = (By.CSS_SELECTOR, "#output #permanentAddress")
+
+class RadioButtonPageLocators:
+
+    YES_RADIOBUTTON = (By.CSS_SELECTOR, 'label[class^="form-check-label"][for="yesRadio"]')
+    IMPRESSIVE_RADIOBUTTON = (By.CSS_SELECTOR, 'label[class^="form-check-label"][for="impressiveRadio"]')
+    NO_RADIOBUTTON = (By.CSS_SELECTOR, 'label[class^="form-check-label"][for="noRadio"]')
+    OUTPUT_RADIOBUTTON = (By.CSS_SELECTOR, 'p span[class="text-success"]')
