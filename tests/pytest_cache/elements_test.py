@@ -1,5 +1,6 @@
+import random
 import time
-from pages.elements_page import TextBoxPage, RadioButtonPage
+from pages.elements_page import TextBoxPage, RadioButtonPage, WebTablePage
 
 
 class TestsElements:
@@ -33,7 +34,28 @@ class TestsElements:
             assert output_yes == 'Yes', "'Yes' have not been selected"
             assert output_impressive == 'Impressive', "'Impressive' have not been selected"
             assert output_no == 'No', "'No' have not been selected"
-            time.sleep(5)
 
 
 
+
+    class TestWebTable:
+
+        def test_web_table_add_person(self, driver):
+            web_table_page = WebTablePage(driver, 'https://demoqa.com/webtables')
+            web_table_page.open()
+            new_person = web_table_page.add_new_person()
+            table_result = web_table_page.chek_new_person()
+            assert new_person in table_result, 'нет в таблице'
+
+        def test_search_person(self, driver):
+            web_table_page = WebTablePage(driver, 'https://demoqa.com/webtables')
+            web_table_page.open()
+
+            new_person = web_table_page.add_new_person()
+            search_text = new_person[1]
+            web_table_page.search_person_in_table(search_text)
+            result = web_table_page.get_table_rows()
+            assert len(result) == 1, f"После поиска должно остаться 1 строка, а осталось: {len(result)}"
+            actual_row = result[0]
+            expected_row = [cell.strip() for cell in actual_row[:len(new_person)]]
+            assert expected_row == new_person, f"Не совпадает строка после поиска: {expected_row} vs {new_person}"

@@ -27,3 +27,22 @@ class RadioButtonPageLocators:
     IMPRESSIVE_RADIOBUTTON = (By.CSS_SELECTOR, 'label[class^="form-check-label"][for="impressiveRadio"]')
     NO_RADIOBUTTON = (By.CSS_SELECTOR, 'label[class^="form-check-label"][for="noRadio"]')
     OUTPUT_RADIOBUTTON = (By.CSS_SELECTOR, 'p span[class="text-success"]')
+
+class WebTablePageLocators:
+
+    # ADD NEW PERSON ON THE TABLE
+
+    ADD_PERSON_BUTTON = (By.CSS_SELECTOR, "button[id='addNewRecordButton']")
+    FIRST_NAME = (By.CSS_SELECTOR, "input[id='firstName']")
+    LAST_NAME = (By.CSS_SELECTOR, "input[id='lastName']")
+    EMAIL_PERSON = (By.CSS_SELECTOR, "input[id='userEmail']")
+    AGE = (By.CSS_SELECTOR, "input[id='age']")
+    SALARY = (By.CSS_SELECTOR, "input[id='salary']")
+    DEPARTMENT = (By.CSS_SELECTOR, "input[id='department']")
+    SUBMIT_PERSON = (By.CSS_SELECTOR, "button[id='submit']")
+
+    #CHECKING FOR ADDITIONS NEW PERSON
+
+    CHEK_TABLE =(By.XPATH, '//*[@id="root"]/div/div/div/div[2]/div[1]/div[2]/table/tbody')
+    SEARCH_TABLE = (By.XPATH, '//*[@id="root"]/div/div/div/div[2]/div[1]/div[2]/table')
+    SEARCH_INPUT = (By.CSS_SELECTOR, 'input[id="searchBox"]')
