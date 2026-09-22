@@ -46,3 +46,27 @@ class WebTablePageLocators:
     CHEK_TABLE =(By.XPATH, '//*[@id="root"]/div/div/div/div[2]/div[1]/div[2]/table/tbody')
     SEARCH_TABLE = (By.XPATH, '//*[@id="root"]/div/div/div/div[2]/div[1]/div[2]/table')
     SEARCH_INPUT = (By.CSS_SELECTOR, 'input[id="searchBox"]')
+class ButtonPageLocators:
+
+    DOUBLE_CLICK = (By.CSS_SELECTOR, 'button[id="doubleClickBtn"]')
+    RIGHT_CLICK = (By.CSS_SELECTOR, 'button[id="rightClickBtn"]')
+    ONE_CLICK = (By.XPATH, '/html/body/div/div/div/div/div[2]/div[1]/div[3]/button')
+
+    DOUBLE_CLICK_MESSAGE = (By.CSS_SELECTOR, 'p[id="doubleClickMessage"]')
+    RIGHT_CLICK_MESSAGE = (By.CSS_SELECTOR, 'p[id="rightClickMessage"]')
+    ONE_CLICK_MESSAGE = (By.CSS_SELECTOR, 'p[id="dynamicClickMessage"]')
+
+class LinksPageLocators:
+
+    SIMPLE_LINK = (By.CSS_SELECTOR, "a[id='simpleLink']")
+    BAD_REQUEST = (By.CSS_SELECTOR, "a[id='bad-request']")
+    DINAMIC_LINK = (By.CSS_SELECTOR, "a[id='dynamicLink']")
+    CREATED_LINK = (By.CSS_SELECTOR, "a[id='created']")
+    NO_CONTENT_LINK = (By.CSS_SELECTOR, "a[id='no-content']")
+    MOVED_LINK = (By.CSS_SELECTOR, "a[id='moved']")
+    UNAUTHORIZET_LINK = (By.CSS_SELECTOR, "a[id='unauthorized']")
+    FORBIDDEN_LINK = (By.CSS_SELECTOR, "a[id='forbidden']")
+    NOT_FOUND_LINK = (By.CSS_SELECTOR, "a[id='invalid-url']")
+
+    #response
+    RESPONSE_LINK = (By.CSS_SELECTOR, "p[id='linkResponse']")

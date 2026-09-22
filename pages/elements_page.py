@@ -1,8 +1,11 @@
 import time
 
+import pytest
+import requests
 from selenium.webdriver.common.by import By
 
-from locators.elements_page_locators import RadioButtonPageLocators, WebTablePageLocators
+from locators.elements_page_locators import RadioButtonPageLocators, WebTablePageLocators, ButtonPageLocators, \
+    LinksPageLocators
 from generator.generator import generated_person, generator_new_person
 from locators.elements_page_locators import TextBoxPageLocators
 from pages.base_page import BasePage
@@ -91,6 +94,90 @@ class WebTablePage(BasePage):
                 if cells:
                     data.append([cell.text.strip() for cell in cells])
         return data
+
+class ButtonPage(BasePage):
+    locators = ButtonPageLocators()
+
+
+    def double_click(self):
+        self.action_double_click(self.element_is_visible(self.locators.DOUBLE_CLICK))
+        return self.check_clicked_on_the_buttons(self.locators.DOUBLE_CLICK_MESSAGE)
+
+
+    def right_click(self):
+        self.action_right_click(self.element_is_visible(self.locators.RIGHT_CLICK))
+        return self.check_clicked_on_the_buttons(self.locators.RIGHT_CLICK_MESSAGE)
+
+    def one_click(self):
+        self.element_is_visible(self.locators.ONE_CLICK).click()
+        return self.check_clicked_on_the_buttons(self.locators.ONE_CLICK_MESSAGE)
+
+    def check_clicked_on_the_buttons(self, element):
+        return self.element_is_present(element).text
+
+class LinksPage(BasePage):
+    locators = LinksPageLocators()
+
+    def check_new_tab_simple_link(self):
+        simple_link = self.element_is_visible(self.locators.SIMPLE_LINK)
+        link_href = simple_link.get_attribute('href')
+        request = requests.get(link_href)
+        if request.status_code == 200:
+            simple_link.click()
+            self.driver.switch_to.window(self.driver.window_handles[1])
+            url = self.driver.current_url
+            return link_href, url
+        else:
+            return request.status_code
+
+    def check_bad_request_link(self):
+        self.element_is_present(self.locators.BAD_REQUEST).click()
+        text_broken_link = self.element_is_present(self.locators.RESPONSE_LINK).text
+        return text_broken_link
+
+
+    def check_dinamic_link(self):
+        simple_link = self.element_is_visible(self.locators.DINAMIC_LINK)
+        link_href = simple_link.get_attribute('href')
+        request = requests.get(link_href)
+        if request.status_code == 200:
+            simple_link.click()
+            self.driver.switch_to.window(self.driver.window_handles[1])
+            url = self.driver.current_url
+            return url, link_href
+        else:
+            return requests.status_codes
+
+    def check_created_link(self,):
+        self.element_is_present(self.locators.CREATED_LINK).click()
+        text_click = self.element_is_present(self.locators.RESPONSE_LINK).text
+        return text_click
+
+    def check_no_content_link(self):
+        self.element_is_present(self.locators.NO_CONTENT_LINK).click()
+        text_click = self.element_is_present(self.locators.RESPONSE_LINK).text
+        return text_click
+    def check_unauthorized_link(self):
+        self.element_is_present(self.locators.UNAUTHORIZET_LINK).click()
+        text_click = self.element_is_present(self.locators.RESPONSE_LINK).text
+        return text_click
+
+    def check_forbidden_link(self):
+        self.element_is_present(self.locators.FORBIDDEN_LINK).click()
+        text_click = self.element_is_present(self.locators.RESPONSE_LINK).text
+        return text_click
+
+    def check_not_found_link(self):
+        self.element_is_present(self.locators.NOT_FOUND_LINK).click()
+        text_click = self.element_is_present(self.locators.RESPONSE_LINK).text
+        return text_click
+
+
+
+
+
+
+
 
 
 

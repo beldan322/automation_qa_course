@@ -1,6 +1,6 @@
 import random
 import time
-from pages.elements_page import TextBoxPage, RadioButtonPage, WebTablePage
+from pages.elements_page import TextBoxPage, RadioButtonPage, WebTablePage, ButtonPage, LinksPage
 
 
 class TestsElements:
@@ -59,3 +59,71 @@ class TestsElements:
             actual_row = result[0]
             expected_row = [cell.strip() for cell in actual_row[:len(new_person)]]
             assert expected_row == new_person, f"Не совпадает строка после поиска: {expected_row} vs {new_person}"
+
+    class TestClickButtons:
+
+        def test_double_click(self, driver):
+            buttons_page = ButtonPage(driver, 'https://demoqa.com/buttons')
+            buttons_page.open()
+            double = buttons_page.double_click()
+            right = buttons_page.right_click()
+            click = buttons_page.one_click()
+            print(double)
+            print(right)
+            print(click)
+            assert double == 'You have done a double click'
+            assert right == 'You have done a right click'
+            assert click == 'You have done a dynamic click'
+
+
+    class TestLinksPage:
+
+        def test_chek_link(self, driver):
+            links_page = LinksPage(driver, 'https://demoqa.com/links')
+            links_page.open()
+            href_link, current_url = links_page.check_new_tab_simple_link()
+            assert href_link == current_url
+
+
+
+        def test_broken_link(self, driver):
+            links_page = LinksPage(driver, 'https://demoqa.com/links')
+            links_page.open()
+            text_broken = links_page.check_bad_request_link()
+            assert text_broken == 'Link has responded with staus 400 and status text Bad Request'
+
+        def test_chek_dinamic_link(self, driver):
+            links_page = LinksPage(driver, 'https://demoqa.com/links')
+            links_page.open()
+            href_link, current_url = links_page.check_dinamic_link()
+            assert href_link == current_url
+
+        def test_check_created_link(self, driver):
+            links_page = LinksPage(driver, 'https://demoqa.com/links')
+            links_page.open()
+            text_created_link = links_page.check_created_link()
+            assert text_created_link == 'Link has responded with staus 201 and status text Created'
+
+        def test_check_no_content_link(self, driver):
+            links_page = LinksPage(driver, 'https://demoqa.com/links')
+            links_page.open()
+            text_created_link = links_page.check_no_content_link()
+            assert text_created_link == 'Link has responded with staus 204 and status text No Content'
+
+        def test_check_unauthorized_link(self, driver):
+            links_page = LinksPage(driver, 'https://demoqa.com/links')
+            links_page.open()
+            text_created_link = links_page.check_unauthorized_link()
+            assert text_created_link == 'Link has responded with staus 401 and status text Unauthorized'
+
+        def test_check_forbidden_link(self, driver):
+            links_page = LinksPage(driver, 'https://demoqa.com/links')
+            links_page.open()
+            text_created_link = links_page.check_forbidden_link()
+            assert text_created_link == 'Link has responded with staus 403 and status text Forbidden'
+
+        def test_check_not_found_link(self, driver):
+            links_page = LinksPage(driver, 'https://demoqa.com/links')
+            links_page.open()
+            text_created_link = links_page.check_not_found_link()
+            assert text_created_link == 'Link has responded with staus 404 and status text Not Found'
