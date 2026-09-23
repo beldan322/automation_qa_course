@@ -70,3 +70,13 @@ class LinksPageLocators:
 
     #response
     RESPONSE_LINK = (By.CSS_SELECTOR, "p[id='linkResponse']")
+
+class UpLoadAndDownloadPageLocators:
+    UPLOAD_FILE = (By.CSS_SELECTOR, "input[id='uploadFile']")
+    UPLOAD_RESULT = (By.CSS_SELECTOR, "p[id='uploadedFilePath']")
+    DOWNLOAD_FILE = (By.CSS_SELECTOR, "a[id='downloadButton']")
+
+class DynamicPropertiesLocators:
+    ENABLE_AFTER = (By.CSS_SELECTOR, "button[id='enableAfter']")
+    COLOR_CHANGE = (By.CSS_SELECTOR, "button[id='colorChange']")
+    VISIBLE_AFTER = (By.CSS_SELECTOR, "button[id='visibleAfter']")

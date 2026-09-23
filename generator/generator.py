@@ -1,3 +1,5 @@
+import random
+
 from data.data import Person, AddPerson
 from faker import Faker
 
@@ -21,3 +23,10 @@ def generator_new_person():
         salary = faker_ru.random_int(min=1000),
         department=faker_ru.job()
     )
+
+def generated_file():
+    path = rf'C:\Users\belmas\PycharmProjects\automation_qa_course\filetest{random.randint(10, 100)}.txt'
+    file = open(path, 'w+')
+    file.write(f'Hellow, hi, привет {random.randint(1, 10000)}')
+    file.close()
+    return file.name, path

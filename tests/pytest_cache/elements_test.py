@@ -1,6 +1,7 @@
 import random
 import time
-from pages.elements_page import TextBoxPage, RadioButtonPage, WebTablePage, ButtonPage, LinksPage
+from pages.elements_page import TextBoxPage, RadioButtonPage, WebTablePage, ButtonPage, LinksPage, \
+    UpLoadAndDownloadPage, DynamicPropertiesPage
 
 
 class TestsElements:
@@ -127,3 +128,41 @@ class TestsElements:
             links_page.open()
             text_created_link = links_page.check_not_found_link()
             assert text_created_link == 'Link has responded with staus 404 and status text Not Found'
+
+
+    class TestUploadAndDownloadPage:
+
+        def test_upload_file(self, driver):
+            upload_file_page = UpLoadAndDownloadPage(driver, 'https://demoqa.com/upload-download')
+            upload_file_page.open()
+            file_name, result = upload_file_page.upload_file()
+            assert file_name == result
+
+        def test_download_file(self, driver):
+            download_file_page = UpLoadAndDownloadPage(driver, 'https://demoqa.com/upload-download')
+            download_file_page.open()
+            check = download_file_page.download_file()
+            time.sleep(5)
+            assert check is True
+
+
+
+    class TestDynamicPropertiesPage:
+
+        def test_dynamic_color(self, driver):
+            dynamic_properties_page = DynamicPropertiesPage(driver, 'https://demoqa.com/dynamic-properties')
+            dynamic_properties_page.open()
+            color_after, color_before = dynamic_properties_page.check_change_color()
+            assert color_after != color_before, 'цвета равны'
+
+        def test_visible_botton(self, driver):
+            visible_botton_page = DynamicPropertiesPage(driver, 'https://demoqa.com/dynamic-properties')
+            visible_botton_page.open()
+            appear_botton = visible_botton_page.check_visible_botton()
+            assert appear_botton is True
+
+        def test_clickable_botton(self, driver):
+            clickable_botton_page = DynamicPropertiesPage(driver, 'https://demoqa.com/dynamic-properties')
+            clickable_botton_page.open()
+            clickable_botton = clickable_botton_page.check_clickable_botton()
+            assert clickable_botton is True
