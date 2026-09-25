@@ -8,3 +8,13 @@ class BrowserWindowsLocators:
     NEW_WINDOW = (By.CSS_SELECTOR, "button[id='windowButton']")
     NEW_WINDOW_MESSAGE = (By.CSS_SELECTOR, "button[id='messageWindowButton']")
 
+
+
+class AlertsPageLocators:
+    ALERT_BUTTON = (By.CSS_SELECTOR, 'button[id="alertButton"]')
+    TIMER_ALERT_BUTTON = (By.CSS_SELECTOR, 'button[id="timerAlertButton"]')
+    CONFORM_ALERT_BUTTON = (By.CSS_SELECTOR, 'button[id="confirmButton"]')
+    PROMPT_ALERT_BUTTON = (By.CSS_SELECTOR, 'button[id="promtButton"]')
+    RESULT_PROMPT = (By.CSS_SELECTOR, 'span[id="promptResult"]')
+
+

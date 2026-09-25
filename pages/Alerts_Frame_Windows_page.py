@@ -1,11 +1,13 @@
 import os
 import time
 import pytest
+from pygments.styles.dracula import yellow
 
+from selenium.webdriver import Keys
+from selenium.webdriver.common.alert import Alert
 
-from selenium.webdriver.common.by import By
-
-from locators.Alerts_Frame_WindowsLocators import BrowserWindowsLocators
+from generator.generator import generated_person
+from locators.Alerts_Frame_WindowsLocators import BrowserWindowsLocators, AlertsPageLocators
 from pages.base_page import BasePage
 
 
@@ -27,3 +29,81 @@ class BrowserWindowsPage(BasePage):
         self.driver.switch_to.window(self.driver.window_handles[1])
         text_new_window = self.element_is_present(self.locators.WORD_NEW_TAB).text
         return text_new_window
+
+
+class AlertsPage(BasePage):
+    locators = AlertsPageLocators
+
+
+    def check_see_alert(self):
+        self.element_is_visible(self.locators.ALERT_BUTTON).click()
+        alert_text = self.driver.switch_to.alert
+        return alert_text.text
+
+
+    def check_alert_after_five_second(self):
+        self.element_is_visible(self.locators.TIMER_ALERT_BUTTON).click()
+        alert = self.alert_is_present()
+        return alert.text
+
+    def check_alert_confirm_text(self):
+        self.element_is_visible(self.locators.CONFORM_ALERT_BUTTON).click()
+        alert = self.alert_is_present()
+        return alert.text
+
+
+    def check_alert_confirm_button_yes(self):
+        self.element_is_visible(self.locators.CONFORM_ALERT_BUTTON).click()
+        alert = self.alert_is_present()
+        try:
+            return alert.text
+        finally:
+            alert.accept()
+
+
+    def check_alert_confirm_button_no(self):
+        self.element_is_visible(self.locators.CONFORM_ALERT_BUTTON).click()
+        alert = self.alert_is_present()
+        try:
+            return alert.text
+        finally:
+            alert.dismiss()
+
+
+    def check_prompt_alert(self):
+        name = next(generated_person())
+        full_name = name.full_name
+        self.element_is_visible(self.locators.PROMPT_ALERT_BUTTON).click()
+        alert = self.alert_is_present()
+        alert.send_keys(full_name)
+        alert.accept()
+        text_form = self.element_is_visible(self.locators.RESULT_PROMPT).text
+        try:
+            return full_name
+        finally:
+            if full_name in text_form:
+                return True
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
