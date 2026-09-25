@@ -3,6 +3,7 @@ from selenium.webdriver.support.ui import WebDriverWait as wait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
 
+
 class BasePage:
     def __init__(self, driver, url):
         self.driver = driver
@@ -43,3 +44,5 @@ class BasePage:
         action.context_click(element)
         action.perform()
 
+    def alert_is_present(self, timeout=10):
+        return wait(self.driver, timeout).until(EC.alert_is_present())
