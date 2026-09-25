@@ -18,3 +18,7 @@ class AddPerson:
     age: int = None
     salary: int = None
     department : str = None
+    mobile : int = None
+    data: int = None
+    current_address : str = None
+    birth_date: int = None

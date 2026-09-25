@@ -166,3 +166,4 @@ class TestsElements:
             clickable_botton_page.open()
             clickable_botton = clickable_botton_page.check_clickable_botton()
             assert clickable_botton is True
+

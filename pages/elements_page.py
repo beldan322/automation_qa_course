@@ -10,7 +10,7 @@ from selenium.common import TimeoutException, ElementNotInteractableException
 from selenium.webdriver.common.by import By
 
 from locators.elements_page_locators import RadioButtonPageLocators, WebTablePageLocators, ButtonPageLocators, \
-    LinksPageLocators, UpLoadAndDownloadPageLocators, DynamicPropertiesLocators, PracticeFormLocators
+    LinksPageLocators, UpLoadAndDownloadPageLocators, DynamicPropertiesLocators
 from generator.generator import generated_person, generator_new_person, generated_file
 from locators.elements_page_locators import TextBoxPageLocators
 from pages.base_page import BasePage
@@ -223,5 +223,6 @@ class DynamicPropertiesPage(BasePage):
         except ElementNotInteractableException:
             return False
         return True
+
 
 

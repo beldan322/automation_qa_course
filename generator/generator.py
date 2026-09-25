@@ -21,7 +21,9 @@ def generator_new_person():
         email = faker_ru.email(),
         age = faker_ru.random_int(min=1, max=90),
         salary = faker_ru.random_int(min=1000),
-        department=faker_ru.job()
+        department=faker_ru.job(),
+        mobile = faker_ru.random_int(min=1111111111, max=9999999999),
+        current_address= faker_ru.address(),
     )
 
 def generated_file():
