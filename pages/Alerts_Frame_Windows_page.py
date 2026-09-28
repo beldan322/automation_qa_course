@@ -7,7 +7,8 @@ from selenium.webdriver import Keys
 from selenium.webdriver.common.alert import Alert
 
 from generator.generator import generated_person
-from locators.Alerts_Frame_WindowsLocators import BrowserWindowsLocators, AlertsPageLocators, FramesPageLocators
+from locators.Alerts_Frame_WindowsLocators import BrowserWindowsLocators, AlertsPageLocators, FramesPageLocators, \
+    NestedFramePageLocators
 from pages.base_page import BasePage
 
 
@@ -108,6 +109,19 @@ class FramesPage(BasePage):
             text = self.element_is_present(self.locators.TITLE_FRAME).text
             return [text, width, height]
 
+
+
+class NestedFramePage(BasePage):
+    locators = NestedFramePageLocators()
+
+    def check_nested_frame(self):
+        parent_frame = self.element_is_present(self.locators.PARENT_FRAME)
+        self.driver.switch_to.frame(parent_frame)
+        parent_text = self.element_is_present(self.locators.TEXT_PARENT_FRAME).text
+        child_frame = self.element_is_present(self.locators.CHILD_FRAME)
+        self.driver.switch_to.frame(child_frame)
+        child_text = self.element_is_present(self.locators.TEXT_CHILD_FRAME).text
+        return parent_text, child_text
 
 
 
