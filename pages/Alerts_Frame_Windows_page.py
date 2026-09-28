@@ -7,7 +7,7 @@ from selenium.webdriver import Keys
 from selenium.webdriver.common.alert import Alert
 
 from generator.generator import generated_person
-from locators.Alerts_Frame_WindowsLocators import BrowserWindowsLocators, AlertsPageLocators
+from locators.Alerts_Frame_WindowsLocators import BrowserWindowsLocators, AlertsPageLocators, FramesPageLocators
 from pages.base_page import BasePage
 
 
@@ -83,6 +83,31 @@ class AlertsPage(BasePage):
         finally:
             if full_name in text_form:
                 return True
+
+
+
+
+class FramesPage(BasePage):
+
+    locators = FramesPageLocators()
+
+    def check_frame(self, frame_num):
+        if frame_num == 'frame1':
+            frame = self.element_is_present(self.locators.FIRST_FRAME)
+            width = frame.get_attribute('width')
+            height = frame.get_attribute('height')
+            self.driver.switch_to.frame(frame)
+            text = self.element_is_present(self.locators.TITLE_FRAME).text
+            self.driver.switch_to.default_content()
+            return [text, width, height]
+        if frame_num == 'frame2':
+            frame = self.element_is_present(self.locators.SECOND_FRAME)
+            width = frame.get_attribute('width')
+            height = frame.get_attribute('height')
+            self.driver.switch_to.frame(frame)
+            text = self.element_is_present(self.locators.TITLE_FRAME).text
+            return [text, width, height]
+
 
 
 
