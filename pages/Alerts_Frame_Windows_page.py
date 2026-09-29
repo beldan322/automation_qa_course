@@ -7,7 +7,7 @@ from selenium.webdriver import Keys
 from selenium.webdriver.common.alert import Alert
 
 from generator.generator import generated_person
-from locators.Alerts_Frame_WindowsLocators import BrowserWindowsLocators, AlertsPageLocators, FramesPageLocators, \
+from locators.Alerts_Frame_Windows_page_Locators import BrowserWindowsLocators, AlertsPageLocators, FramesPageLocators, \
     NestedFramePageLocators, ModalDialogsPageLocators
 from pages.base_page import BasePage
 
