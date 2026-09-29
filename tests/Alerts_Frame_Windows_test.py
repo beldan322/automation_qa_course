@@ -1,4 +1,5 @@
-from pages.Alerts_Frame_Windows_page import BrowserWindowsPage, AlertsPage, FramesPage, NestedFramePage
+from pages.Alerts_Frame_Windows_page import BrowserWindowsPage, AlertsPage, FramesPage, NestedFramePage, \
+    ModalDialogsPage
 
 
 class TestAlertsFrameWindows:
@@ -89,3 +90,34 @@ class TestAlertsFrameWindows:
 
 
 
+    class TestModalDialogsPage:
+        def test_modal_dialog(self, driver):
+            modal_dialog_page = ModalDialogsPage(driver, 'https://demoqa.com/modal-dialogs')
+            modal_dialog_page.open()
+            small_modal_title, small_modal_body = modal_dialog_page.check_simple_modal_dialog()
+            large_modal_title, large_modal_body = modal_dialog_page.check_large_modal_dialog()
+            assert small_modal_title == 'Small Modal'
+            assert small_modal_body == 'This is a small modal. It has very less content'
+            assert large_modal_title == 'Large Modal'
+            assert large_modal_body == ("Lorem Ipsum is simply dummy text of the printing and typesetting industry. "
+                                        "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, "
+                                        "when an unknown printer took a galley of type and scrambled it to make a type specimen book. "
+                                        "It has survived not only five centuries, but also the leap into electronic typesetting, remaining "
+                                        "essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing "
+                                        "Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including "
+                                        "versions of Lorem Ipsum.")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+''

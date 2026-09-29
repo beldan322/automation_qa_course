@@ -1,14 +1,14 @@
 import os
 import time
 import pytest
-from pygments.styles.dracula import yellow
+
 
 from selenium.webdriver import Keys
 from selenium.webdriver.common.alert import Alert
 
 from generator.generator import generated_person
 from locators.Alerts_Frame_WindowsLocators import BrowserWindowsLocators, AlertsPageLocators, FramesPageLocators, \
-    NestedFramePageLocators
+    NestedFramePageLocators, ModalDialogsPageLocators
 from pages.base_page import BasePage
 
 
@@ -125,9 +125,28 @@ class NestedFramePage(BasePage):
 
 
 
+class ModalDialogsPage(BasePage):
+    locators = ModalDialogsPageLocators
 
 
+    def check_simple_modal_dialog(self):
+        self.element_is_visible(self.locators.SMALL_MODAL).click()
+        text1 = self.element_is_visible(self.locators.TITLE_SMALL_MODAL).text
+        text2 = self.element_is_visible(self.locators.SMALL_MODAL_BODY).text
+        try:
+            return text1, text2
+        finally:
+            self.element_is_visible(self.locators.SMALL_CLOSE_BUTTON).click()
 
+
+    def check_large_modal_dialog(self):
+        self.element_is_visible(self.locators.LARGE_MODAL).click()
+        text1 = self.element_is_visible(self.locators.TITLE_LARGE_MODAL).text
+        text2 = self.element_is_visible(self.locators.LARGE_MODAL_BODY).text
+        try:
+            return text1, text2
+        finally:
+            self.element_is_visible(self.locators.LARGE_CLOSE_BUTTON).click()
 
 
 
