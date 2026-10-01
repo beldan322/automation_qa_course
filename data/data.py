@@ -22,3 +22,8 @@ class AddPerson:
     data: int = None
     current_address : str = None
     birth_date: int = None
+
+
+@dataclass
+class Color:
+    color_name : list = None
