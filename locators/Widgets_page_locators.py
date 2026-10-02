@@ -18,3 +18,22 @@ class AutoCompletePageLocators:
         DELETE_MULTI_VALUE = (By.CSS_SELECTOR, "div[role='button']")
         SINGLE_INPUT = (By.CSS_SELECTOR, 'input[id="autoCompleteSingleInput"]')
         SINGLE_VALUE = (By.CSS_SELECTOR, 'div[class="auto-complete__single-value css-1dimb5e-singleValue"]')
+
+
+
+class DatePickerPageLocators:
+
+    DATE_INPUT = (By.CSS_SELECTOR, 'input[id="datePickerMonthYearInput"]')
+    DATE_SELECT_MONTH = (By.CSS_SELECTOR, 'select[class="react-datepicker__month-select"]')
+    DATE_SELECT_YEAR = (By.CSS_SELECTOR, 'select[class="react-datepicker__year-select"]')
+    DATE_SELECT_DAY_LIST = (By.CSS_SELECTOR, "div[class*='react-datepicker__day react-datepicker__day']")
+
+
+
+    TIME_AND_DATE_INPUT = (By.CSS_SELECTOR, 'input[id="dateAndTimePickerInput"]')
+    TIME_AND_DATE_MONTH = (By.CSS_SELECTOR, 'button[class="react-datepicker__month-read-view"]')
+    MONTH_DROPDOWN = (By.CSS_SELECTOR, 'div[class="react-datepicker__month-option"]')
+    TIME_AND_DATE_YEAR = (By.CSS_SELECTOR, 'button[class="react-datepicker__year-read-view"]')
+    YEAR_DROPDOWN = (By.CSS_SELECTOR, 'div[class="react-datepicker__year-option"]')
+    TIME_DROPDOWN = (By.CSS_SELECTOR, 'div[class="react-datepicker__time-box"]')
+

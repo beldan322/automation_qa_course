@@ -1,9 +1,12 @@
-import random
 
-from data.data import Person, AddPerson, Color
+import random
+from datetime import time
+
+from data.data import Person, AddPerson, Color, Date
 from faker import Faker
 
 faker_ru = Faker('ru_RU')
+faker_en = Faker('EN')
 Faker.seed()
 
 def generated_person():
@@ -39,3 +42,20 @@ def generated_color():
     yield Color(
         color_name = ["Red","Blue","Green","Yellow","Purple","Black","White","Voilet","Indigo","Magenta","Aqua"]
     )
+
+
+def generated_date():
+    yield Date(
+        year=faker_en.year(),
+        month=faker_en.month(),
+        day=faker_en.day_of_month()
+
+    )
+
+def generated_time():
+    steps_per_day = 24 * 4
+    step = random.randint(0, steps_per_day - 1)
+    total_minutes = step * 15
+    hours = total_minutes // 60
+    minutes = total_minutes % 60
+    return f"{hours:02d}:{minutes:02d}"
