@@ -4,7 +4,8 @@ from selenium.webdriver import Keys
 from selenium.webdriver.support.select import Select
 
 from generator.generator import generated_color, generated_date, generated_time
-from locators.Widgets_page_locators import AccordianPageLocators, AutoCompletePageLocators, DatePickerPageLocators
+from locators.Widgets_page_locators import AccordianPageLocators, AutoCompletePageLocators, DatePickerPageLocators, \
+    SliderPageLocators, ProgressBarPageLocators
 from pages.base_page import BasePage
 
 
@@ -106,3 +107,43 @@ class DatePickerPage(BasePage):
         self.select_day_from_list(self.locators.TIME_DROPDOWN, time1)
         value_date_after = input_date.get_attribute('value')
         return value_date_before, value_date_after
+
+
+class SliderPage(BasePage):
+    locators = SliderPageLocators()
+
+    def change_slider_value(self):
+        value_before = self.element_is_visible(self.locators.SLIDER_VALUE).get_attribute('value')
+        slider_input = self.element_is_visible(self.locators.SLIDER_INPUT)
+        self.action_drug_and_drop_by_offset(slider_input, random.randint(1, 99), 0)
+        value_after = self.element_is_visible(self.locators.SLIDER_VALUE).get_attribute('value')
+        return value_before, value_after
+
+
+
+
+
+class ProgressBarPage(BasePage):
+    locators = ProgressBarPageLocators()
+
+
+    def check_progress_bar_page(self):
+        value_before = self.element_is_present(self.locators.VALUE_BAR).text
+        bar_button = self.element_is_visible(self.locators.START_BUTTON)
+        bar_button.click()
+        time.sleep(random.randint(1,9))
+        bar_button.click()
+        value_after = self.element_is_present(self.locators.VALUE_BAR).text
+        return value_before, value_after
+
+
+
+
+
+
+
+
+
+
+
+

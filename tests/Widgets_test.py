@@ -1,6 +1,6 @@
 import time
 
-from pages.Widgets_page import AccordianPage, AutoCompletePage, DatePickerPage
+from pages.Widgets_page import AccordianPage, AutoCompletePage, DatePickerPage, SliderPage, ProgressBarPage
 
 
 class TestWidgetsPage:
@@ -59,3 +59,24 @@ class TestWidgetsPage:
             select_date_and_time_page.open()
             date = select_date_and_time_page.select_date_and_time()
             print(date)
+
+    class TestSliderPage:
+
+        def test_slider(self, driver):
+            slider_page = SliderPage(driver, 'https://demoqa.com/slider')
+            slider_page.open()
+            before, after = slider_page.change_slider_value()
+            assert before != after, 'выпало 25, перезапустите тест'
+
+
+    class TestProgressBarPage:
+
+
+        def test_progress_bar(self, driver):
+            progress_bar_page = ProgressBarPage(driver, 'https://demoqa.com/progress-bar')
+            progress_bar_page.open()
+            before, after = progress_bar_page.check_progress_bar_page()
+            assert before != after
+
+
+
