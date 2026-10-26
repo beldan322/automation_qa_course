@@ -1,6 +1,6 @@
 import time
 
-from pages.Widgets_page import AccordianPage, AutoCompletePage, DatePickerPage, SliderPage, ProgressBarPage
+from pages.Widgets_page import AccordianPage, AutoCompletePage, DatePickerPage, SliderPage, ProgressBarPage, TabsPage
 
 
 class TestWidgetsPage:
@@ -77,6 +77,17 @@ class TestWidgetsPage:
             progress_bar_page.open()
             before, after = progress_bar_page.check_progress_bar_page()
             assert before != after
+
+
+    class TestTabsPage:
+
+        def test_check_tabs(self, driver):
+            tabs_check_page = TabsPage(driver, 'https://demoqa.com/tabs')
+            tabs_check_page.open()
+            text1, text2, text3 = tabs_check_page.check_text_tabs()
+            assert text1 == 574
+            assert text2 == 1059
+            assert text3 == 613
 
 
 

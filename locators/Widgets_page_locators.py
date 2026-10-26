@@ -55,7 +55,15 @@ class ProgressBarPageLocators:
 
 
 
+class TabsPageLocators:
 
+    WHAT_TABS = (By.CSS_SELECTOR, 'button[id="demo-tab-what"]')
+    ORIGIN_TABS = (By.CSS_SELECTOR, 'button[id="demo-tab-origin"]')
+    USE_TABS = (By.CSS_SELECTOR, 'button[id="demo-tab-use"]')
+
+    TEXT_WHAT_TAB = (By.CSS_SELECTOR, 'div[id="demo-tabpane-what"]')
+    TEXT_ORIGIN_TAB = (By.CSS_SELECTOR, 'div[id="demo-tabpane-origin"]')
+    TEXT_USE_TAB = (By.CSS_SELECTOR, 'div[id="demo-tabpane-use"]')
 
 
 
