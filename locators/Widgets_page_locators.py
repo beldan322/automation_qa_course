@@ -88,4 +88,8 @@ class ToolTipsLocators:
                                                                       # You hovered over the 1.10.32
 
 
+class MenuPageLocators:
+    MENU_LIST = (By.CSS_SELECTOR, 'ul[id="nav"] li a')
+
+
 
