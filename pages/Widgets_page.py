@@ -5,7 +5,7 @@ from selenium.webdriver.support.select import Select
 
 from generator.generator import generated_color, generated_date, generated_time
 from locators.Widgets_page_locators import AccordianPageLocators, AutoCompletePageLocators, DatePickerPageLocators, \
-    SliderPageLocators, ProgressBarPageLocators, TabsPageLocators
+    SliderPageLocators, ProgressBarPageLocators, TabsPageLocators, ToolTipsLocators
 from pages.base_page import BasePage
 
 
@@ -138,7 +138,7 @@ class ProgressBarPage(BasePage):
 
 
 class TabsPage(BasePage):
-    locators = TabsPageLocators
+    locators = TabsPageLocators()
 
     def check_text_tabs(self):
         self.element_is_visible(self.locators.WHAT_TABS).click()
@@ -148,6 +148,32 @@ class TabsPage(BasePage):
         self.element_is_visible(self.locators.USE_TABS).click()
         text3 = self.element_is_visible(self.locators.TEXT_USE_TAB).text
         return len(text1), len(text2), len(text3)
+
+
+
+class ToolTipsPage(BasePage):
+    locators = ToolTipsLocators()
+
+    def get_text_from_tool_tips(self, hover_element, wait_element):
+        element = self.element_is_present(hover_element)
+        self.action_move_to_element(element)
+        self.element_is_visible(wait_element)
+        time.sleep(0.3)
+        tool_tip_text = self.element_is_visible(self.locators.TOOL_TIP_INNERS)
+        text = tool_tip_text.text
+        return text
+
+
+    def check_tool_tips(self):
+        tool_tips_text_button = self.get_text_from_tool_tips(self.locators.BOTTON_HOVER, self.locators.TOOL_TIP_BUTTON)
+        time.sleep(0.3)
+        tool_tips_text_input = self.get_text_from_tool_tips(self.locators.INPUT_HOVER, self.locators.TOOL_TIP_INPUT)
+        time.sleep(0.3)
+        tool_tips_text_contrary = self.get_text_from_tool_tips(self.locators.CONTRARY_HOVER, self.locators.TOOL_TIP_CONTRARY)
+        time.sleep(0.3)
+        tool_tips_text_section = self.get_text_from_tool_tips(self.locators.SECTION_HOVER, self.locators.TOOL_TIP_SECTION)
+        time.sleep(0.3)
+        return tool_tips_text_button, tool_tips_text_input, tool_tips_text_contrary, tool_tips_text_section
 
 
 

@@ -66,4 +66,26 @@ class TabsPageLocators:
     TEXT_USE_TAB = (By.CSS_SELECTOR, 'div[id="demo-tabpane-use"]')
 
 
+class ToolTipsLocators:
+
+
+    BOTTON_HOVER = (By.CSS_SELECTOR, 'button[id="toolTipButton"]')
+    TOOL_TIP_BUTTON = (By.CSS_SELECTOR, 'button[aria-describedby="buttonToolTip"]')
+
+
+    INPUT_HOVER = (By.CSS_SELECTOR, 'input[id="toolTipTextField"]')
+    TOOL_TIP_INPUT = (By.CSS_SELECTOR, 'input[aria-describedby="textFieldToolTip"]')
+
+    CONTRARY_HOVER = (By.XPATH, "//*[.='Contrary']")
+    TOOL_TIP_CONTRARY = (By.CSS_SELECTOR, 'a[aria-describedby="contraryTexToolTip"]')
+
+    SECTION_HOVER = (By.XPATH, "//*[.='1.10.32']")
+    TOOL_TIP_SECTION = (By.CSS_SELECTOR, 'a[aria-describedby="sectionToolTip"]')
+
+    TOOL_TIP_INNERS = (By.CSS_SELECTOR, 'div[class="tooltip-inner"]') # You hovered over the Button
+                                                                      # You hovered over the text field
+                                                                      # You hovered over the Contrary
+                                                                      # You hovered over the 1.10.32
+
+
 
