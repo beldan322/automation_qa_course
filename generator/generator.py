@@ -2,7 +2,7 @@
 import random
 from datetime import time
 
-from data.data import Person, AddPerson, Color, Date
+from data.data import Person, AddPerson, Color, Date, SelectValue, SelectOne, FourColor
 from faker import Faker
 
 faker_ru = Faker('ru_RU')
@@ -59,3 +59,21 @@ def generated_time():
     hours = total_minutes // 60
     minutes = total_minutes % 60
     return f"{hours:02d}:{minutes:02d}"
+
+
+def generated_value():
+    yield SelectValue(
+        value = ["Group 1, option 1", "Group 1, option 2", "Group 2, option 1", "Group 2, option 2", "A root option", "Another root option"]
+    )
+
+
+def generated_one_value():
+    yield SelectOne(
+        one_value= ["Dr.", "Mr.", "Mrs.", "Ms.", "Prof.", "Other"]
+    )
+
+
+def generated_four_color():
+    yield FourColor(
+        color_name=["Red","Blue","Green", "Black"]
+    )

@@ -1,3 +1,5 @@
+import random
+
 from selenium.webdriver.common.by import By
 
 
@@ -93,3 +95,21 @@ class MenuPageLocators:
 
 
 
+class SelectMenuPageLocators:
+    CLICK_SELECT_VALUE = (By.CSS_SELECTOR, 'input[id="react-select-2-input"]') # кликать
+    SELECT_VALUE = (By.CSS_SELECTOR, "div[id='react-select-2-placeholder']")
+    AFTER_ONE = (By.CSS_SELECTOR, 'div[class="css-1dimb5e-singleValue"]')# взять атрибут
+
+
+    BEFORE_ONE = (By.CSS_SELECTOR, 'div[id="react-select-3-placeholder"]')
+    AFTER_ONE = (By.CSS_SELECTOR, 'div[class="css-1dimb5e-singleValue"]')
+    SELECT_ONE = (By.CSS_SELECTOR, "input[id='react-select-3-input']") # сначала кликать
+    VALUE_ONE = (By.CSS_SELECTOR, f"input[aria-activedescendant='react-select-3-option-0-{random.randint(0, 5)}']")# рандомно выбирать элемент
+
+    SELECT_MENU = (By.CSS_SELECTOR, 'select[id="oldSelectMenu"]') # сначала кликать
+    SELECT_MENU_VALUE = (By.XPATH, f'//*[@id="oldSelectMenu"]/option[{random.randint(1, 11)}]') # потом рандомно выбирать элемент
+
+    MULTISELECT = (By.CSS_SELECTOR, "input[id='react-select-4-input']") # с помощью Keys нажимать enter
+    BEFORE_MULTI = (By.CSS_SELECTOR, 'div[id="react-select-4-placeholder"]') # взять текст
+    ALL_CLEAR = (By.XPATH, '//*[@id="selectMenuContainer"]/div[7]/div/div/div/div[2]/div[1]')
+    MULTI_VALUE = (By.CSS_SELECTOR, 'div[class="css-1p3m7a8-multiValue"] [class="css-9jq23d"]')

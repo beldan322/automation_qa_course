@@ -3,9 +3,11 @@ import time
 from selenium.webdriver import Keys
 from selenium.webdriver.support.select import Select
 
-from generator.generator import generated_color, generated_date, generated_time
+from generator.generator import generated_color, generated_date, generated_time, generated_value, generated_one_value, \
+    generated_four_color
 from locators.Widgets_page_locators import AccordianPageLocators, AutoCompletePageLocators, DatePickerPageLocators, \
-    SliderPageLocators, ProgressBarPageLocators, TabsPageLocators, ToolTipsLocators, MenuPageLocators
+    SliderPageLocators, ProgressBarPageLocators, TabsPageLocators, ToolTipsLocators, MenuPageLocators, \
+    SelectMenuPageLocators
 from pages.base_page import BasePage
 
 
@@ -188,6 +190,58 @@ class MenuPage(BasePage):
             time.sleep(0.2)
             data.append(item.text)
         return data
+
+
+
+class SelectMenuPage(BasePage):
+    locators = SelectMenuPageLocators()
+
+
+
+    def select_value(self):
+        before = self.element_is_visible(self.locators.SELECT_VALUE).text
+        values = random.sample(next(generated_value()).value, k=1)
+        input_value = self.element_is_visible(self.locators.CLICK_SELECT_VALUE)
+        for value in values:
+            input_value.send_keys(value)
+            time.sleep(0.2)
+            input_value.send_keys(Keys.ENTER)
+            time.sleep(0.2)
+        return str(before), str(values)[1:-1:1]
+
+
+    def select_one(self):
+        before = self.element_is_visible(self.locators.BEFORE_ONE).text
+        one_value = random.sample(next(generated_one_value()).one_value, k=1)
+        input_value = self.element_is_visible(self.locators.SELECT_ONE)
+        for one in one_value:
+            input_value.send_keys(one)
+            time.sleep(0.2)
+            input_value.send_keys(Keys.ENTER)
+            time.sleep(0.2)
+        return before, str(one_value)[1:-1:1]
+
+    def old_style_select_menu(self):
+        before_value = self.element_is_visible(self.locators.SELECT_MENU).get_attribute('value')
+        self.element_is_visible(self.locators.SELECT_MENU).click()
+        self.element_is_visible(self.locators.SELECT_MENU_VALUE).click()
+        after_value = self.element_is_visible(self.locators.SELECT_MENU).get_attribute('value')
+        return before_value, after_value
+
+    def multiselect_drop_down(self):
+        before_value = self.element_is_visible(self.locators.BEFORE_MULTI).text
+        colors = random.sample(next(generated_four_color()).color_name, k=4)
+        input_multi = self.element_is_visible(self.locators.MULTISELECT)
+        for color in colors:
+            input_multi.send_keys(Keys.ENTER)
+            input_multi.send_keys(color)
+            input_multi.send_keys(Keys.ENTER)
+
+        return before_value, colors
+
+
+
+
 
 
 

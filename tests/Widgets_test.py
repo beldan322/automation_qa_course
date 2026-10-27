@@ -1,7 +1,7 @@
 import time
 
 from pages.Widgets_page import AccordianPage, AutoCompletePage, DatePickerPage, SliderPage, ProgressBarPage, TabsPage, \
-    ToolTipsPage, MenuPage
+    ToolTipsPage, MenuPage, SelectMenuPage
 
 
 class TestWidgetsPage:
@@ -114,5 +114,62 @@ class TestWidgetsPage:
             data =  menu_page.check_menu()
             assert data == ['Main Item 1', 'Main Item 2', 'Sub Item', 'Sub Item', 'SUB SUB LIST »',
                             'Sub Sub Item 1', 'Sub Sub Item 2', 'Main Item 3']
+
+
+
+    class TestSelectMenu:
+
+        # не разобрался с этими селекторам, душная хрень, сделал генератор, вписываю значение из массива и проверяю на неравенство плэйсхолдеру
+        def test_select_value(self, driver):
+            select_value_page = SelectMenuPage(driver, 'https://demoqa.com/select-menu')
+            select_value_page.open()
+            before, after = select_value_page.select_value()
+            assert before != after, 'вы ничо не вписали'
+
+        def test_select_one(self, driver):
+            select_one_page = SelectMenuPage(driver, 'https://demoqa.com/select-menu')
+            select_one_page.open()
+            before, after = select_one_page.select_one()
+            assert before != after, 'вы ничо не вписали'
+
+        def test_old_style_select_menu(self, driver):
+            old_style_select_menu_page = SelectMenuPage(driver, 'https://demoqa.com/select-menu')
+            old_style_select_menu_page.open()
+            before, after = old_style_select_menu_page.old_style_select_menu()
+            assert before != after
+
+
+        def test_multiselect_drop_down(self, driver):
+            multiselect_page = SelectMenuPage(driver, 'https://demoqa.com/select-menu')
+            multiselect_page.open()
+            before, after = multiselect_page.multiselect_drop_down()
+            assert before != after
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

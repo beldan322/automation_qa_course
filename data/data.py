@@ -34,3 +34,16 @@ class Date:
     day : str = None
     month : str = None
     year : str = None
+
+
+@dataclass
+class SelectValue:
+    value: list = None
+
+@dataclass
+class SelectOne:
+    one_value: list = None
+
+@dataclass
+class FourColor:
+    color_name: list=None
