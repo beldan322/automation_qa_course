@@ -59,3 +59,8 @@ class BasePage:
     def alert_is_present(self, timeout=15):
         return wait(self.driver, timeout).until(EC.alert_is_present())
 
+
+    def drug_and_drop_element(self, what, where):
+        action = ActionChains(self.driver)
+        action.drag_and_drop(what, where)
+        action.perform()
