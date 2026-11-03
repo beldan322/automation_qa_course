@@ -41,3 +41,35 @@ class ResizablePageLocators:
     RESIZABLE = (By.CSS_SELECTOR, 'div[id="resizable"]') # берём высоту и ширину
     RESIZABLE_HANDLE = (By.CSS_SELECTOR, 'div[class="resizable-nolimit mt-4"] span[class="react-resizable-handle react-resizable-handle-se"]')
 
+
+class DroppablePageLocators:
+
+    #simple_page
+    TAB_SIMPLE = (By.CSS_SELECTOR, 'button[id="droppableExample-tab-simple"]')
+    SIMPLE_DRUG = (By.CSS_SELECTOR, '#draggable')
+    SIMPLE_DROP = (By.CSS_SELECTOR, '#simpleDropContainer #droppable')
+
+    #accept_page
+    TAB_ACCEPT = (By.CSS_SELECTOR, 'button[id="droppableExample-tab-accept"]')
+    ACCEPTABLE_DRUG = (By.CSS_SELECTOR, 'div[id="acceptable"]')
+    NOT_ACCEPTABLE_DRUG = (By.XPATH, '//*[@id="acceptDropContainer"]/div[1]/div[2]')
+    ACCEPTABLE_DROP = (By.XPATH, '//*[@id="acceptDropContainer"]/div[2]/p')
+
+
+    #prevent_propogation_page
+    TAB_PREVENT = (By.CSS_SELECTOR, 'button[id="droppableExample-tab-preventPropogation"]') # кнопка
+    PREVENT_DRUG = (By.CSS_SELECTOR, 'div[id="dragBox"]') # drug - то шо тянем
+    # верхний дроп
+    NOT_GREEDY_DROP_BOX_TEXT = (By.XPATH, '//*[@id="notGreedyDropBox"]/p')
+    NOT_GREEDY_INNER_BOX = (By.CSS_SELECTOR, 'div[id="notGreedyInnerDropBox"] p')
+    # нижний дроп
+    GREEDY_DROP_BOX_TEXT = (By.XPATH, '//*[@id="greedyDropBox"]/p')
+    GREEDY_INNER_BOX = (By.XPATH, '//*[@id="greedyDropBoxInner"]/p')
+
+    #revent_draggable_page
+    TAB_REVERT = (By.CSS_SELECTOR, 'button[id="droppableExample-tab-revertable"]')
+    WILL_REVENT_DRUG = (By.CSS_SELECTOR, '#revertable')
+    NOT_REVENT_DRUG = (By.CSS_SELECTOR, '#notRevertable')
+    REVENT_DROP = (By.CSS_SELECTOR, '#revertableDropContainer #droppable')
+
+

@@ -1,7 +1,8 @@
 import random
 import time
 
-from locators.Interactions_page_locators import SortablePageLocators, SelectablePageLocators, ResizablePageLocators
+from locators.Interactions_page_locators import SortablePageLocators, SelectablePageLocators, ResizablePageLocators, \
+    DroppablePageLocators
 from pages.base_page import BasePage
 
 
@@ -111,9 +112,81 @@ class ResizablePage(BasePage):
 
 
 
+class DroppablePage(BasePage):
+    locators = DroppablePageLocators
+
+    def drop_simple(self):
+        drug_div = self.element_is_visible(self.locators.SIMPLE_DRUG)
+        drop_div = self.element_is_visible(self.locators.SIMPLE_DROP)
+        time.sleep(0.5)
+        self.drug_and_drop_element(drug_div, drop_div)
+        time.sleep(0.5)
+        return drop_div.text
 
 
+    def not_acceptable_drop(self):
+        self.element_is_visible(self.locators.TAB_ACCEPT).click()
+        drug_div = self.element_is_visible(self.locators.NOT_ACCEPTABLE_DRUG)
+        drop_div = self.element_is_visible(self.locators.ACCEPTABLE_DROP)
+        time.sleep(0.5)
+        self.drug_and_drop_element(drug_div, drop_div)
+        time.sleep(0.5)
+        return drop_div.text
 
+    def acceptable_drop(self):
+        self.element_is_visible(self.locators.TAB_ACCEPT).click()
+        drug_div = self.element_is_visible(self.locators.ACCEPTABLE_DRUG)
+        drop_div = self.element_is_visible(self.locators.ACCEPTABLE_DROP)
+        time.sleep(0.5)
+        self.drug_and_drop_element(drug_div, drop_div)
+        time.sleep(0.5)
+        return drop_div.text
+
+    def drop_prevent_propogation(self):
+        self.element_is_visible(self.locators.TAB_PREVENT).click()
+        drug_div = self.element_is_visible(self.locators.PREVENT_DRUG)
+        not_greedy_drop_dox_div = self.element_is_visible(self.locators.NOT_GREEDY_DROP_BOX_TEXT)
+        not_greedy_inner_div = self.element_is_visible(self.locators.NOT_GREEDY_INNER_BOX)
+        greedy_drop_dox_div = self.element_is_visible(self.locators.GREEDY_DROP_BOX_TEXT)
+        greedy_inner_div =  self.element_is_visible(self.locators.GREEDY_INNER_BOX)
+        time.sleep(0.5)
+        self.drug_and_drop_element(drug_div, not_greedy_drop_dox_div)
+        time.sleep(0.5)
+        self.drug_and_drop_element(drug_div, not_greedy_inner_div)
+        time.sleep(0.5)
+        self.drug_and_drop_element(drug_div, greedy_inner_div)
+        time.sleep(0.5)
+        self.drug_and_drop_element(drug_div, greedy_drop_dox_div)
+        time.sleep(0.5)
+        return not_greedy_drop_dox_div.text, not_greedy_inner_div.text, greedy_inner_div.text, greedy_drop_dox_div.text
+
+
+    def will_revert(self):
+        self.element_is_visible(self.locators.TAB_REVERT).click()
+        time.sleep(0.5)
+        drug_div = self.element_is_visible(self.locators.WILL_REVENT_DRUG)
+        time.sleep(0.5)
+        drop_div = self.element_is_visible(self.locators.REVENT_DROP)
+        time.sleep(0.5)
+        self.drug_and_drop_element(drug_div, drop_div)
+        position_after_move = drug_div.get_attribute('style')
+        time.sleep(1)
+        position_after_revert = drug_div.get_attribute('style')
+        return position_after_move, position_after_revert
+
+
+    def not_revert(self):
+        self.element_is_visible(self.locators.TAB_REVERT).click()
+        time.sleep(0.5)
+        drug_div = self.element_is_visible(self.locators.NOT_REVENT_DRUG)
+        time.sleep(0.5)
+        drop_div = self.element_is_visible(self.locators.REVENT_DROP)
+        time.sleep(0.5)
+        self.drug_and_drop_element(drug_div, drop_div)
+        position_after_move = drug_div.get_attribute('style')
+        time.sleep(1)
+        position_after_revert = drug_div.get_attribute('style')
+        return position_after_move, position_after_revert
 
 
 

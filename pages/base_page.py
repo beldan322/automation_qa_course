@@ -1,3 +1,4 @@
+import time
 
 from selenium.webdriver.support.ui import WebDriverWait as wait
 from selenium.webdriver.support import expected_conditions as EC
@@ -62,5 +63,7 @@ class BasePage:
 
     def drug_and_drop_element(self, what, where):
         action = ActionChains(self.driver)
+        time.sleep(0.2)
         action.drag_and_drop(what, where)
+        time.sleep(0.2)
         action.perform()

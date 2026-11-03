@@ -1,4 +1,4 @@
-from pages.Interactions_page import SortablePage, SelectablePage, ResizablePage
+from pages.Interactions_page import SortablePage, SelectablePage, ResizablePage, DroppablePage
 
 
 class TestInteractions:
@@ -50,3 +50,40 @@ class TestInteractions:
             resizable_page.open()
             max_size, min_size = resizable_page.change_size_resizable()
             assert min_size != max_size, 'размеры равны, либо нехватает размера экрана, чтобы изменить размер'
+
+
+    class TestDroppablePage:
+
+        def test_simple_drug(self, driver):
+            droppable_page = DroppablePage(driver, 'https://demoqa.com/droppable')
+            droppable_page.open()
+            text = droppable_page.drop_simple()
+            assert text == 'Dropped!', 'не переместилось, либо поменялся текст'
+
+
+        def test_accept_drug(self, driver):
+            droppable_page = DroppablePage(driver, 'https://demoqa.com/droppable')
+            droppable_page.open()
+            not_accept_drop = droppable_page.not_acceptable_drop()
+            accept_drop = droppable_page.acceptable_drop()
+            assert not_accept_drop == 'Drop here', 'изменился текст, либо переместилось после accept'
+            assert accept_drop == 'Dropped!', 'изменился текст, либо не переместилось'
+
+
+        def test_prevent_propogation_drug(self, driver):
+            droppable_page = DroppablePage(driver, 'https://demoqa.com/droppable')
+            droppable_page.open()
+            one, two, three, foure = droppable_page.drop_prevent_propogation()
+            assert one == 'Dropped!', 'упав тест, либо не переместилось либо поменялось значение'
+            assert two == 'Dropped!', 'упав тест, либо не переместилось либо поменялось значение'
+            assert three == 'Dropped!', 'упав тест, либо не переместилось либо поменялось значение'
+            assert foure == 'Dropped!', 'упав тест, либо не переместилось либо поменялось значение'
+
+
+        def test_revent_draggable_drug(self, driver):
+            droppable_page = DroppablePage(driver, 'https://demoqa.com/droppable')
+            droppable_page.open()
+            will_before, will_after = droppable_page.will_revert()
+            before, after = droppable_page.not_revert()
+            assert will_before != will_after, 'равны, чот не так'
+            assert before == after, "неравны, чот не так"
