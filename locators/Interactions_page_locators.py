@@ -28,3 +28,16 @@ class SelectablePageLocators:
 
         ACTIVE_ITEM_LIST = (By.CSS_SELECTOR, 'li[class="mt-2 list-group-item active list-group-item-action"]')
         ACTIVE_ITEM_GRID = (By.CSS_SELECTOR, 'li[class="list-group-item active list-group-item-action"]')
+
+
+
+class ResizablePageLocators:
+
+        # большая коробка с ограничениями по размеру
+    RESIZABLE_BOX = (By.CSS_SELECTOR, 'div[id="resizableBoxWithRestriction"]') # берём высоту и ширину
+    RESIZABLE_BOX_HANDLE = (By.CSS_SELECTOR, 'div[class="constraint-area"] span[class="react-resizable-handle react-resizable-handle-se"]')
+
+        # маленькая коробка без ограничений по размеру
+    RESIZABLE = (By.CSS_SELECTOR, 'div[id="resizable"]') # берём высоту и ширину
+    RESIZABLE_HANDLE = (By.CSS_SELECTOR, 'div[class="resizable-nolimit mt-4"] span[class="react-resizable-handle react-resizable-handle-se"]')
+

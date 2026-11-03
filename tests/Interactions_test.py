@@ -1,4 +1,4 @@
-from pages.Interactions_page import SortablePage, SelectablePage
+from pages.Interactions_page import SortablePage, SelectablePage, ResizablePage
 
 
 class TestInteractions:
@@ -33,3 +33,20 @@ class TestInteractions:
             selectable_page.open()
             active = selectable_page.select_grid_item()
             assert len(active) > 0
+
+    class TestResizablePage:
+
+
+        def test_resizable_box(self, driver):
+            resizable_page = ResizablePage(driver, 'https://demoqa.com/resizable')
+            resizable_page.open()
+            max_size, min_size = resizable_page.change_size_resizable_box()
+            assert ('500px', '300px') == max_size,'размеры не сходятся'
+            assert ('150px', '150px') == min_size, 'размеры не сходятся'
+
+
+        def test_resizable(self, driver):
+            resizable_page = ResizablePage(driver, 'https://demoqa.com/resizable')
+            resizable_page.open()
+            max_size, min_size = resizable_page.change_size_resizable()
+            assert min_size != max_size, 'размеры равны, либо нехватает размера экрана, чтобы изменить размер'
