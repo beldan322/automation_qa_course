@@ -73,3 +73,63 @@ class DroppablePageLocators:
     REVENT_DROP = (By.CSS_SELECTOR, '#revertableDropContainer #droppable')
 
 
+class DragabblePageLocators:
+
+
+ #SIMPLE
+    TAB_SIMPLE = (By.CSS_SELECTOR, '#draggableExample-tab-simple')
+    DRUG_SIMPLE = (By.CSS_SELECTOR, '#dragBox') #style
+
+ #AXIS
+    TAB_AXIS_REST = (By.CSS_SELECTOR, '#draggableExample-tab-axisRestriction')
+    X_DRUG_AXIS_REST = (By.CSS_SELECTOR, '#restrictedX')
+    Y_DRUG_AXIS_REST = (By.CSS_SELECTOR, '#restrictedY')
+
+ #CONTAINER
+    TAB_CONTAINER_REST = (By.CSS_SELECTOR, '#draggableExample-tab-containerRestriction')
+    DRUG_CONTAINER_BOX = (By.CSS_SELECTOR, '#containmentWrapper div[class="draggable ui-widget-content ui-draggable ui-draggable-handle"]')
+    DRUG_CONTAINER_PARENT = (By.CSS_SELECTOR, 'span[class="ui-widget-header ui-draggable ui-draggable-handle"]')
+
+ #CURSOR
+    TAB_CURSOR = (By.CSS_SELECTOR, '#draggableExample-tab-cursorStyle')
+    DRUG_CENTER_STICK = (By.CSS_SELECTOR, '#cursorCenter')
+    DRUG_TOP_LEFT_STICK = (By.CSS_SELECTOR, '#cursorTopLeft')
+    DRUG_BUTTON_STICK = (By.CSS_SELECTOR, '#cursorBottom')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

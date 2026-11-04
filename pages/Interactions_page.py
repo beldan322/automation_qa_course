@@ -2,7 +2,7 @@ import random
 import time
 
 from locators.Interactions_page_locators import SortablePageLocators, SelectablePageLocators, ResizablePageLocators, \
-    DroppablePageLocators
+    DroppablePageLocators, DragabblePageLocators
 from pages.base_page import BasePage
 
 
@@ -192,18 +192,78 @@ class DroppablePage(BasePage):
 
 
 
+class DragabblePage(BasePage):
+    locators = DragabblePageLocators()
+
+
+    def drug_simple(self):
+        drug_div = self.element_is_visible(self.locators.DRUG_SIMPLE)
+        time.sleep(0.4)
+        before = drug_div.get_attribute('style')
+        time.sleep(0.4)
+        self.action_drug_and_drop_by_offset(drug_div, random.randint(100, 1000), random.randint(1, 1000))
+        time.sleep(0.4)
+        after = drug_div.get_attribute('style')
+        time.sleep(0.4)
+        return before, after
+
+
+    def drug_axis_x(self):
+        time.sleep(0.5)
+        self.element_is_visible(self.locators.TAB_AXIS_REST).click()
+        time.sleep(0.5)
+        drug_div = self.element_is_visible(self.locators.X_DRUG_AXIS_REST)
+        time.sleep(0.5)
+        before = drug_div.get_attribute('style')
+        time.sleep(0.5)
+        self.action_drug_and_drop_by_offset(drug_div, random.randint(-400, 1100), random.randint(1, 1000))
+        time.sleep(0.5)
+        after = drug_div.get_attribute('style')
+        time.sleep(0.5)
+        return before, after
+
+
+    def drug_axis_y(self):
+        time.sleep(0.5)
+        self.element_is_visible(self.locators.TAB_AXIS_REST).click()
+        time.sleep(0.5)
+        drug_div = self.element_is_visible(self.locators.Y_DRUG_AXIS_REST)
+        time.sleep(0.5)
+        before = drug_div.get_attribute('style')
+        time.sleep(0.5)
+        self.action_drug_and_drop_by_offset(drug_div, random.randint(-400, 500), random.randint(-200, 600))
+        time.sleep(0.5)
+        after = drug_div.get_attribute('style')
+        time.sleep(0.5)
+        return before, after
+
+
+    def drug_container_box(self):
+        self.element_is_visible(self.locators.TAB_CONTAINER_REST).click()
+        time.sleep(0.1)
+        drug_div = self.element_is_visible(self.locators.DRUG_CONTAINER_BOX)
+        time.sleep(0.5)
+        before = drug_div.get_attribute('style')
+        time.sleep(0.5)
+        self.action_drug_and_drop_by_offset(drug_div, random.randint(-100, 2000), random.randint(-100, 1000))
+        time.sleep(0.5)
+        after = drug_div.get_attribute('style')
+        time.sleep(0.5)
+        return before, after
 
 
 
-
-
-
-
-
-
-
-
-
+    def drug_container_parent(self):
+        time.sleep(1)
+        drug_div = self.element_is_visible(self.locators.DRUG_CONTAINER_PARENT)
+        time.sleep(0.7)
+        before = drug_div.get_attribute('style')
+        time.sleep(0.5)
+        self.action_drug_and_drop_by_offset(drug_div, random.randint(-1, 100), random.randint(-1, 200))
+        time.sleep(0.7)
+        after = drug_div.get_attribute('style')
+        time.sleep(0.6)
+        return before, after
 
 
 

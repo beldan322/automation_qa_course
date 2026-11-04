@@ -1,4 +1,4 @@
-from pages.Interactions_page import SortablePage, SelectablePage, ResizablePage, DroppablePage
+from pages.Interactions_page import SortablePage, SelectablePage, ResizablePage, DroppablePage, DragabblePage
 
 
 class TestInteractions:
@@ -87,3 +87,49 @@ class TestInteractions:
             before, after = droppable_page.not_revert()
             assert will_before != will_after, 'равны, чот не так'
             assert before == after, "неравны, чот не так"
+
+
+    class TestDragabblePage:
+
+        def test_simple_dragabble(self, driver):
+            dragabble_page = DragabblePage(driver, 'https://demoqa.com/dragabble')
+            dragabble_page.open()
+            before, after = dragabble_page.drug_simple()
+            assert before != after , 'они равны или тест упал из-за скорости драйвера'
+
+
+
+        def test_axis_restricted_dragabble(self, driver):
+            dragabble_page = DragabblePage(driver, 'https://demoqa.com/dragabble')
+            dragabble_page.open()
+            before_x, after_x = dragabble_page.drug_axis_x()
+            before_y, after_y = dragabble_page.drug_axis_y()
+            assert before_x != after_x , 'они равны или тест упал из-за скорости драйвера'
+            assert before_y != after_y , 'они равны или тест упал из-за скорости драйвера'
+
+
+
+        def test_container_restricted_dragabble(self, driver):
+            dragabble_page = DragabblePage(driver, 'https://demoqa.com/dragabble')
+            dragabble_page.open()
+            before_box, after_box = dragabble_page.drug_container_box()
+            before_parent, after_parent = dragabble_page.drug_container_parent()
+            assert before_box != after_box , 'они равны или тест упал из-за скорости драйвера'
+            assert before_parent != after_parent , 'они равны или тест упал из-за скорости драйвера'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
