@@ -1,5 +1,7 @@
 import os
 import time
+
+import allure
 import pytest
 
 
@@ -13,8 +15,9 @@ from pages.base_page import BasePage
 
 
 class BrowserWindowsPage(BasePage):
-
     locators = BrowserWindowsLocators()
+
+    @allure.step('Открытие новой вкладки')
     def check_opened_new_tab(self):
         self.element_is_visible(self.locators.NEW_TAB).click()
         self.driver.switch_to.window(self.driver.window_handles[1])
@@ -24,7 +27,7 @@ class BrowserWindowsPage(BasePage):
         else:
             return False
 
-
+    @allure.step('Открытие нового окна')
     def check_opened_new_window(self):
         self.element_is_visible(self.locators.NEW_WINDOW).click()
         self.driver.switch_to.window(self.driver.window_handles[1])
@@ -35,24 +38,25 @@ class BrowserWindowsPage(BasePage):
 class AlertsPage(BasePage):
     locators = AlertsPageLocators
 
-
+    @allure.step('Проверка алерта')
     def check_see_alert(self):
         self.element_is_visible(self.locators.ALERT_BUTTON).click()
         alert_text = self.driver.switch_to.alert
         return alert_text.text
 
-
+    @allure.step('Проверка алерта спустя 5 сек')
     def check_alert_after_five_second(self):
         self.element_is_visible(self.locators.TIMER_ALERT_BUTTON).click()
         alert = self.alert_is_present()
         return alert.text
 
+    @allure.step('Проверка алерта с подтверждением')
     def check_alert_confirm_text(self):
         self.element_is_visible(self.locators.CONFORM_ALERT_BUTTON).click()
         alert = self.alert_is_present()
         return alert.text
 
-
+    @allure.step('Проверка алерта с подтверждением нажав на YES')
     def check_alert_confirm_button_yes(self):
         self.element_is_visible(self.locators.CONFORM_ALERT_BUTTON).click()
         alert = self.alert_is_present()
@@ -61,7 +65,7 @@ class AlertsPage(BasePage):
         finally:
             alert.accept()
 
-
+    @allure.step('Проверка алерта с подтверждением нажав на NO')
     def check_alert_confirm_button_no(self):
         self.element_is_visible(self.locators.CONFORM_ALERT_BUTTON).click()
         alert = self.alert_is_present()
@@ -70,7 +74,7 @@ class AlertsPage(BasePage):
         finally:
             alert.dismiss()
 
-
+    @allure.step('Проверка алерта с вводом')
     def check_prompt_alert(self):
         name = next(generated_person())
         full_name = name.full_name
@@ -92,6 +96,7 @@ class FramesPage(BasePage):
 
     locators = FramesPageLocators()
 
+    @allure.step('Проверка рамки')
     def check_frame(self, frame_num):
         if frame_num == 'frame1':
             frame = self.element_is_present(self.locators.FIRST_FRAME)
@@ -114,6 +119,7 @@ class FramesPage(BasePage):
 class NestedFramePage(BasePage):
     locators = NestedFramePageLocators()
 
+    @allure.step('Проверка вложенной рамки')
     def check_nested_frame(self):
         parent_frame = self.element_is_present(self.locators.PARENT_FRAME)
         self.driver.switch_to.frame(parent_frame)
@@ -128,7 +134,7 @@ class NestedFramePage(BasePage):
 class ModalDialogsPage(BasePage):
     locators = ModalDialogsPageLocators
 
-
+    @allure.step('Проверка простого модального окна')
     def check_simple_modal_dialog(self):
         self.element_is_visible(self.locators.SMALL_MODAL).click()
         text1 = self.element_is_visible(self.locators.TITLE_SMALL_MODAL).text
@@ -138,7 +144,7 @@ class ModalDialogsPage(BasePage):
         finally:
             self.element_is_visible(self.locators.SMALL_CLOSE_BUTTON).click()
 
-
+    @allure.step('Проверка большого модального окна')
     def check_large_modal_dialog(self):
         self.element_is_visible(self.locators.LARGE_MODAL).click()
         text1 = self.element_is_visible(self.locators.TITLE_LARGE_MODAL).text

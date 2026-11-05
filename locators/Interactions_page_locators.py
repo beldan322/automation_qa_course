@@ -90,7 +90,7 @@ class DragabblePageLocators:
     DRUG_CONTAINER_BOX = (By.CSS_SELECTOR, '#containmentWrapper div[class="draggable ui-widget-content ui-draggable ui-draggable-handle"]')
     DRUG_CONTAINER_PARENT = (By.CSS_SELECTOR, 'span[class="ui-widget-header ui-draggable ui-draggable-handle"]')
 
- #CURSOR
+ #CURSOR проверяет курсоры, мне лень делать да и нафиг, очень редкий сценарий, где надо проверять сами курсоры
     TAB_CURSOR = (By.CSS_SELECTOR, '#draggableExample-tab-cursorStyle')
     DRUG_CENTER_STICK = (By.CSS_SELECTOR, '#cursorCenter')
     DRUG_TOP_LEFT_STICK = (By.CSS_SELECTOR, '#cursorTopLeft')

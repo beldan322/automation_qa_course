@@ -1,5 +1,7 @@
 import os
 import time
+
+import allure
 import pytest
 from selenium.webdriver import Keys
 
@@ -18,6 +20,7 @@ from pages.base_page import BasePage
 class PracticeFormPage(BasePage):
     locators = PracticeFormLocators()
 
+    @allure.step('Заполнение всех полей в форме регистрации')
     def fill_form_fields(self):
         person = next(generator_new_person())
         file_name, path = generated_file()
@@ -39,11 +42,7 @@ class PracticeFormPage(BasePage):
         self.element_is_visible(self.locators.SUBMIT_BUTTON_FORM).click()
         return person.first_name, person.last_name, person.email, person.mobile, gender, subject, hobbies, file_name, person.current_address
 
-
-
-
-
-
+    @allure.step('Проверка заполненной формы')
     def check_created_form(self):
         student_form = self.elements_are_present(self.locators.REGISTRATION_FORM)
         data = []
